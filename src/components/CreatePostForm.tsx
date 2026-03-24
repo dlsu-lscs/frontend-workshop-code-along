@@ -2,7 +2,7 @@
 
 import { type FormEvent, useState } from "react";
 
-import { createPostAction } from "@/lib/actions";
+import { submitPost } from "@/lib/services";
 
 export function CreatePostForm() {
     const [text, setText] = useState("");
@@ -12,15 +12,13 @@ export function CreatePostForm() {
     async function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
-        const formData = new FormData();
-        formData.set("body", text);
-
         setError(null);
         setIsSubmitting(true);
 
         try {
-            await createPostAction(formData);
+            await submitPost(text);
             setText("");
+            window.location.reload();
         } catch (error) {
             if (error instanceof Error) {
                 setError(error.message);
@@ -56,7 +54,7 @@ export function CreatePostForm() {
                     <p className="text-xs text-muted">Write a short post update</p>
                     <button
                         type="submit"
-                        disabled={isSubmitting || !text.trim()}
+                        disabled={isSubmitting}
                         className="inline-flex items-center justify-center rounded-md bg-accent px-4 py-2 text-sm font-medium text-accent-foreground transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
                     >
                         {isSubmitting ? "Posting..." : "Post"}

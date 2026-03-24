@@ -21,22 +21,6 @@ export async function getPosts(): Promise<Post[]> {
   return data.filter(isPost);
 }
 
-export async function createPost(body: string): Promise<Post> {
-  const response = await fetch(POSTS_API_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ body }),
-  });
-
-  if (!response.ok) {
-    throw new Error(`Failed to create post: ${response.status}`);
-  }
-
-  return response.json();
-}
-
 function isPost(value: unknown): value is Post {
   if (!value || typeof value !== "object") {
     return false;

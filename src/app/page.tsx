@@ -1,6 +1,6 @@
-import { CreatePostForm } from "@/components/create-post-form";
-import { Hero } from "@/components/hero";
-import { PostsSection } from "@/components/posts-section";
+import { CreatePostForm } from "@/components/CreatePostForm";
+import { Hero } from "@/components/Hero";
+import { PostsSection } from "@/components/PostsSection";
 
 export default async function Home() {
     return (

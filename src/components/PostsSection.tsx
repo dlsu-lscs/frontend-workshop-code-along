@@ -1,5 +1,5 @@
 import { getPosts, type Post } from "@/lib/api";
-import { PostCard } from "@/components/post-card";
+import { PostCard } from "@/components/PostCard";
 
 export async function PostsSection() {
   let posts: Post[] = [];
